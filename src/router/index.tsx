@@ -17,9 +17,9 @@ const routes = createBrowserRouter([
   {
     path: '/phishing-simulation',
     element: (
-      // <ProtectedRoute>
+      <ProtectedRoute>
         <PhishingSimulation/>
-      // </ProtectedRoute>
+      </ProtectedRoute>
     ),
   },
 ]);
