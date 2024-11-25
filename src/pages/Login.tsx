@@ -1,13 +1,15 @@
+import React, {useContext} from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
 import {toast} from 'react-toastify';
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
-import React from "react";
 import {motion} from 'framer-motion'
+import AuthContext from "../contexts/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext)
 
   const validateForm = ({email, password}: { email: string, password: string }) => {
 
@@ -41,7 +43,7 @@ export default function Login() {
 
       if (response.status === 200) {
         const {token} = response.data;
-        localStorage.setItem('jwtToken', token); // Save token in localStorage
+        login(token)
         toast.success('Login successful!');
         navigate('/phishing-simulation'); // Redirect to the dashboard or protected route
       }
